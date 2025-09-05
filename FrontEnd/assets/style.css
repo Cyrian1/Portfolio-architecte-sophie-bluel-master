@@ -186,3 +186,34 @@ footer nav ul {
 	margin: 2em
 }
 
+/* ---- Filtres (au-dessus de la galerie) ---- */
+#filters {
+  display: flex;
+  justify-content: center;   /* centré sous le titre */
+  gap: 12px;                 /* espace entre boutons */
+  flex-wrap: wrap;           /* passe à la ligne si pas la place */
+  margin: 20px 0 30px;       /* espace autour des filtres */
+}
+
+#filters button {
+  font-family: 'Work Sans';
+  font-size: 14px;
+  padding: 8px 16px;         /* “pilule” */
+  border-radius: 999px;
+  border: 1px solid #1D6154; /* vert contour */
+  background: #FFFFFF;       /* fond blanc par défaut */
+  color: #1D6154;            /* texte vert par défaut */
+  cursor: pointer;
+}
+
+#filters button:hover {
+  filter: brightness(0.95);  /* léger feedback au survol */
+}
+
+#filters button.active {      /* bouton sélectionné (comme la maquette) */
+  background: #1D6154;       /* fond vert */
+  color: #FFFFFF;            /* texte blanc */
+  border-color: #1D6154;
+}
+
+

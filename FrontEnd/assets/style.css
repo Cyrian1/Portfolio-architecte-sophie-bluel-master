@@ -427,3 +427,55 @@ body {
 main {
 	flex: 1 0 auto;
 }
+
+/* ====== ÉTAT CONNECTÉ (v3 propre) ====== */
+
+/* Bandeau noir plein écran */
+.admin-bar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 59px;                 /* demandé */
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1000;
+}
+
+/* décale le contenu pour ne pas être sous le bandeau */
+body.connected { padding-top: 59px; }
+
+/* cache les filtres en état connecté */
+body.connected #filters{ display: none !important; }
+
+/* Titre + bouton "modifier" centré comme la maquette */
+#portfolio .titlebar{
+  display: flex;
+  align-items: baseline;      /* <-- clé : aligne sur la baseline du texte */
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 1em;
+}
+
+.edit-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Work Sans';
+  font-size: 14px;
+  color: #000;                  /* discret, comme sur la maquette */
+  padding: 6px 8px;
+}
+
+/* Icônes Font Awesome : taille harmonisée */
+.admin-bar i,
+.edit-btn i{
+  font-size: 14px;
+  line-height: 1;
+  display: inline-block;
+}

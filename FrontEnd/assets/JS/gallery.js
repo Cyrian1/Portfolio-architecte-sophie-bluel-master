@@ -1,9 +1,6 @@
-// Accueil : galerie + filtres + état connecté (bandeau, logout, bouton "modifier")
-// + MODALE (vue galerie avec suppression, vue ajout avec preview + POST).
-// SÉCURITÉ : ne s'exécute que sur la page qui contient #portfolio et .gallery.
 
 (function () {
-  // --- Ne rien faire si on n'est pas sur l'accueil
+
   const onHome = document.getElementById("portfolio") && document.querySelector(".gallery");
   if (!onHome) return;
 
@@ -386,9 +383,8 @@
         return;
       }
 
-      // Succès : on ferme la modale et on reste sur l'accueil (pas d'injection live)
+      // Succès : on ferme la modale et on reste sur l'accueil 
       closeModal();
-      // (si tu veux l'injection live plus tard : on pourra pousser la réponse dans ALL_WORKS + DOM)
     } catch {
       formError.textContent = "Le serveur ne répond pas. Réessayez.";
     }

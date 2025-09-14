@@ -338,7 +338,6 @@ footer nav ul {
 	border-color: #1D6154;
 }
 
-/* --- Navigation : pas de soulignement + lien actif en gras --- */
 nav a,
 nav a:visited {
 	text-decoration: none;
@@ -395,7 +394,6 @@ nav a.active {
 	height: 36px;
 }
 
-/* Lien discret sous le bouton */
 #login .forgot {
 	display: block;
 	text-align: center;
@@ -412,7 +410,6 @@ nav a.active {
 	color: #B1663C;
 }
 
-/* (Option recommandé site-wide) Footer collé en bas si contenu court */
 html,
 body {
 	height: 100%;
@@ -458,7 +455,6 @@ body.connected #filters {
 	display: none !important;
 }
 
-/* "Mes Projets" + bouton "modifier" (alignés sur la baseline) */
 #portfolio .titlebar {
 	display: flex;
 	align-items: baseline;
@@ -497,9 +493,9 @@ body.connected #filters {
 	display: inline-block;
 }
 
-/* ==========================================
-   MODALE — overlay + fenêtre (630 × 688 fixés)
-   ========================================== */
+/* =========
+   MODALE 
+   ========= */
 .modal-overlay {
 	position: fixed;
 	top: var(--adminbar-h, 0px);
@@ -580,7 +576,6 @@ body.connected #filters {
 	color: #000;
 }
 
-/* vues : galerie / ajout — seul le contenu central scrolle */
 .modal .modal-view {
 	display: flex;
 	flex-direction: column;
@@ -593,13 +588,12 @@ body.connected #filters {
 	display: none;
 }
 
-/* largeur de contenu "resserrée" (maquette) */
 .modal .content-narrow {
 	width: 420px;
 	margin: 0 auto;
 }
 
-/* ligne + actions fixées en bas de la vue, calées à 420px */
+
 .modal .modal-view .divider {
 	height: 1px;
 	background: #B3B3B3;
@@ -616,7 +610,7 @@ body.connected #filters {
 	padding-top: 12px;
 }
 
-/* bouton primaire */
+
 .modal .btn-primary {
 	font-family: 'Syne';
 	font-weight: 700;
@@ -738,7 +732,6 @@ body.connected #filters {
 	display: block;
 }
 
-/* formulaire resserré */
 .modal form.add-form {
 	display: flex;
 	flex-direction: column;

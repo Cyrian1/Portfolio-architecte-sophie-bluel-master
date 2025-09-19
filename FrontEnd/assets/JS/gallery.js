@@ -359,36 +359,64 @@
     if (addSubmit.disabled) return;
 
     const f = addFileInput.files[0];
-    if (!f || !(addTitle.value || '').trim() || !(addCatSelect.value || '')) {
+    const title = (addTitle.value || '').trim();
+    const category = addCatSelect.value;
+
+    if (!f || !title || !category) {
       formError.textContent = "Tous les champs sont nécessaires";
       return;
     }
 
     const fd = new FormData();
     fd.append('image', f);
-    fd.append('title', (addTitle.value || '').trim());
-    fd.append('category', addCatSelect.value); // integer string OK
+    fd.append('title', title);
+    fd.append('category', category);
+
+    addSubmit.disabled = true;
 
     try {
-      const res = await fetch(WORKS_URL, {
-        method: 'POST',
-        headers: authHeader(),
-        body: fd
-      });
+      const res = await fetch(WORKS_URL, { method: 'POST', headers: authHeader(), body: fd });
+
       if (res.status === 401) return handleUnauthorized();
       if (!res.ok) {
         formError.textContent = (res.status === 400)
           ? "Tous les champs sont nécessaires"
-          : "Échec de l'envoi. Réessayez.";
+          : `Échec (${res.status}). Réessayez.`;
         return;
       }
 
-      // Succès : on ferme la modale et on reste sur l'accueil 
+      let created = null;
+      try { created = await res.json(); } catch {}
+
+      const newWork = created ?? {
+        id: `tmp_${Date.now()}`,
+        title,
+        imageUrl: (addPreview.querySelector('img')?.src || ''),
+        categoryId: Number(category)
+      };
+
+      if (!newWork.categoryId && created?.category?.id) {
+        newWork.categoryId = created.category.id;
+      }
+
+      // 1) Modèle
+      ALL_WORKS.push(newWork);
+
+      // 2) DOM (respecte le filtre actif)
+      if (ACTIVE_CATEGORY === "all" || String(ACTIVE_CATEGORY) === String(newWork.categoryId)) {
+        gallery.appendChild(createFigure(newWork));
+      }
+
+      // 3) Fermer
       closeModal();
-    } catch {
+
+    } catch (e) {
       formError.textContent = "Le serveur ne répond pas. Réessayez.";
+    } finally {
+      addSubmit.disabled = false;
     }
   }
+
 
   function resetAddForm() {
     if (!addForm) return;
